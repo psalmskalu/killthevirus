@@ -8,12 +8,12 @@ class Virus:
     virus_Y = []
     virus_X_change = []
     virus_Y_change = []
-    number_of_viruses = 6
+    number_of_viruses = 10
 
     def __init__(self):        
         for i in range(self.number_of_viruses):
             self.virus_image.append(pygame.image.load('assets/virus.png'))
-            self.virus_X.append(randint(0, 360))
+            self.virus_X.append(randint(0, 560))
             self.virus_Y.append(randint(30, 100))
             self.virus_X_change.append(1)
             self.virus_Y_change.append(5)
@@ -27,7 +27,7 @@ class Virus:
         if self.virus_X[i] <= 0:
             self.virus_X_change[i] = 1
             self.virus_Y[i]  += self.virus_Y_change[i]
-        elif self.virus_X[i] > 336:
+        elif self.virus_X[i] > 560:
             self.virus_X[i] = -1
             self.virus_Y[i] += self.virus_Y_change[i]
 

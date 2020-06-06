@@ -9,19 +9,19 @@ pygame.init()
 screen = pygame.display.set_mode((400, 400))
 
 #Background
-background = pygame.image.load('background.jpg')
+background = pygame.image.load('assets/background.jpg')
 
 
 #add title and icon
 pygame.display.set_caption("Space Invaders")
-icon = pygame.image.load('transportation.png')
+icon = pygame.image.load('assets/transportation.png')
 
 pygame.display.set_icon(icon)
 
 score = 0
 
 #player
-player_image = pygame.image.load('transportation.png')
+player_image = pygame.image.load('assets/transportation.png')
 player_X = 160
 player_Y = 350
 player_X_change = 0
@@ -35,7 +35,7 @@ enemy_Y_change = []
 number_of_enemies = 6
 
 for i in range(number_of_enemies):
-    enemy_image.append(pygame.image.load('enemy.png'))
+    enemy_image.append(pygame.image.load('assets/virus.png'))
     enemy_X.append(randint(0, 360))
     enemy_Y.append(randint(30, 100))
     enemy_X_change.append(1)
@@ -50,7 +50,7 @@ Bullet states
 '''
 
 # Bullet
-bullet_image = pygame.image.load('miscellaneous.png')
+bullet_image = pygame.image.load('assets/miscellaneous.png')
 bullet_X = 0
 bullet_Y = 200
 bullet_X_change = 1

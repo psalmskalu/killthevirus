@@ -18,14 +18,14 @@ class Game:
         pygame.init()
 
        #create your screen
-        self.screen = pygame.display.set_mode((400, 400))
+        self.screen = pygame.display.set_mode((600, 470))
 
        #Background
         self.background = pygame.image.load('assets/background.jpg')
 
 
        #add title and icon
-        pygame.display.set_caption("Space Invaders")
+        pygame.display.set_caption("Kill the Virus")
         self.icon = pygame.image.load('assets/transportation.png')
 
         pygame.display.set_icon(self.icon)
@@ -54,17 +54,16 @@ class Game:
                     if event.key == pygame.K_RIGHT:
                         player.player_X_change = 3
 
-                    if event.key == pygame.K_SPACE:
-                         if bullet.bullet_state is 'ready':
+                    if event.key == pygame.K_SPACE:                         
+                         if bullet.bullet_state == 'ready':
                              bullet.bullet_X = player.player_X
-                             player.fire_bullet(self.screen, bullet, player.player_X, player.player_Y)
+                             player.fire_bullet(self.screen, bullet)
 
                 if event.type == pygame.KEYUP:
                     if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
                         player.player_X_change = 0
-
             
-    
+            #Move player
             player.move()
     
             for i in range(virus.number_of_viruses):
@@ -72,13 +71,13 @@ class Game:
                 #Move virus
                 virus.move(i)
                 
-                #Collision
+                #Handle collision
                 collision = self.isCollision(virus.virus_X[i], virus.virus_Y[i], bullet.bullet_X, bullet.bullet_Y)
                 if collision:
-                    bullet.bullet_Y = 300
+                    bullet.bullet_Y = 400
                     bullet.set_state('ready')
                     self.score += 1
-                    virus.virus_X[i] = randint(0, 360)
+                    virus.virus_X[i] = randint(0, 560)
                     virus.virus_Y[i] = randint(30, 100)
 
                 virus.paint_virus(self.screen, virus.virus_X[i], virus.virus_Y[i], i)
@@ -86,8 +85,8 @@ class Game:
             #Move bullet
             bullet.move()
 
-            if bullet.bullet_state is 'fire':
-               player.fire_bullet(self.screen, bullet, player.player_X, player.player_Y)
+            if bullet.bullet_state == 'fire':
+               player.fire_bullet(self.screen, bullet)
                bullet.bullet_Y -= bullet.bullet_Y_change
 
 
@@ -108,7 +107,7 @@ class Game:
         distance = math.sqrt((math.pow(virus_X - bullet_X,2)) + ( math.pow(virus_Y - bullet_Y,2)))
         if distance < 27:
             return True
-            return False
+        return False
 
 
 if __name__=="__main__":
