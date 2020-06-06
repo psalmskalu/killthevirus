@@ -6,8 +6,8 @@ class Bullet:
         self.bullet_image = pygame.image.load('assets/miscellaneous.png')
         self.bullet_X = 0
         self.bullet_Y = 400
-        self.bullet_X_change = 1
-        self.bullet_Y_change = 2
+        self.bullet_X_change = 2
+        self.bullet_Y_change = 5
         self.bullet_state = 'ready'
 
     def set_state(self, state):
