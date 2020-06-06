@@ -1,5 +1,6 @@
 from random import randint
 import pygame
+from pygame import mixer
 
 class Virus:
 
@@ -17,18 +18,20 @@ class Virus:
             self.virus_Y.append(randint(30, 100))
             self.virus_X_change.append(1)
             self.virus_Y_change.append(5)
+            self.dying_sound = mixer.Sound('assets/audio/die.wav')
 
     def paint_virus(self, screen, x, y, i):
         screen.blit(self.virus_image[i], (x, y))
 
     def move(self, i):
+        
         self.virus_X[i] += self.virus_X_change[i]
 
         if self.virus_X[i] <= 0:
             self.virus_X_change[i] = 1
             self.virus_Y[i]  += self.virus_Y_change[i]
-        elif self.virus_X[i] > 560:
-            self.virus_X[i] = -1
+        elif self.virus_X[i] >= 560:
+            self.virus_X_change[i] = -1
             self.virus_Y[i] += self.virus_Y_change[i]
 
 

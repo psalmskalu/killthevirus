@@ -1,4 +1,5 @@
 import pygame
+from pygame import mixer
 
 class Bullet: 
         
@@ -9,6 +10,7 @@ class Bullet:
         self.bullet_X_change = 2
         self.bullet_Y_change = 5
         self.bullet_state = 'ready'
+        self.bullet_sound = mixer.Sound('assets/audio/shoot.wav')
 
     def set_state(self, state):
         self.bullet_state = state

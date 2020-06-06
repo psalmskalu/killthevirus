@@ -15,8 +15,9 @@ class Player:
     def paint_player(self, screen, x, y):
         screen.blit(self.player_image, (x, y))
 
-    def fire_bullet(self, screen, bullet):
-        bullet.set_state('fire')              
+    def fire_bullet(self, screen, bullet):        
+        bullet.set_state('fire') 
+        bullet.bullet_sound.play()             
         screen.blit(bullet.bullet_image, (bullet.bullet_X + 10, bullet.bullet_Y + 10))
 
     def move(self):
