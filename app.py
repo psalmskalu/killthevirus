@@ -4,12 +4,11 @@ from random import randint
 from player import Player
 from virus import Virus
 from bullet import Bullet
+from score import Score
 
 
 class Game:
-    
-    
-    score = 0
+           
     RUNNING = True
     
     def __init__(self):
@@ -31,10 +30,9 @@ class Game:
         pygame.display.set_icon(self.icon)
 
         self.init_elements()
+ 
 
-        
-
-    def run_game(self, player, virus, bullet):
+    def run_game(self, player, virus, bullet, score):
         while self.RUNNING:
              # set screen background with RGB
             self.screen.fill((0, 0, 0))
@@ -76,7 +74,7 @@ class Game:
                 if collision:
                     bullet.bullet_Y = 400
                     bullet.set_state('ready')
-                    self.score += 1
+                    score.set_value(score.get_value() + 1)
                     virus.virus_X[i] = randint(0, 560)
                     virus.virus_Y[i] = randint(30, 100)
 
@@ -90,7 +88,8 @@ class Game:
                bullet.bullet_Y -= bullet.bullet_Y_change
 
 
-    
+            #display score
+            score.show_score(self.screen)
 
             player.paint_player(self.screen, player.player_X, player.player_Y)
     
@@ -100,8 +99,9 @@ class Game:
         player = Player()
         virus = Virus()
         bullet = Bullet()
+        score = Score()
 
-        self.run_game(player, virus, bullet)
+        self.run_game(player, virus, bullet, score)
 
     def isCollision(self, virus_X, virus_Y, bullet_X, bullet_Y):
         distance = math.sqrt((math.pow(virus_X - bullet_X,2)) + ( math.pow(virus_Y - bullet_Y,2)))
